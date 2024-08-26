@@ -1,7 +1,7 @@
 name: nation_code_picker
 description: "A nation calling code selection widget."
 version: 0.0.1
-homepage:
+homepage: https://github.com/enescerrahoglu/nation_code_picker
 
 environment:
   sdk: ^3.5.1

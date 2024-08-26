@@ -9,7 +9,7 @@ nation_code_picker:
 ```
 ![implementation](https://github.com/user-attachments/assets/6fc7273e-b451-447e-94cb-52b3bacfd547)
 -->
-![usage](https://github.com/user-attachments/assets/9de6bf01-4314-4c3f-ad0d-5b2afb816549)
+![usage](https://github.com/user-attachments/assets/35960daf-3af8-4310-9797-e0173ab6c02e)
 
 ## Screenshots
 <img src="https://github.com/user-attachments/assets/b6753501-be7e-45fa-9df9-130cd24de7c0" height="500">

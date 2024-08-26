@@ -23,17 +23,14 @@ mixin _NationCodePickerMixin on State<NationCodePicker> {
       final name = nation.name.toLowerCase();
       final code = nation.code.toLowerCase();
       final dialCode = nation.dialCode.toLowerCase();
-      return name.contains(query) ||
-          code.contains(query) ||
-          dialCode.contains(query);
+      return name.contains(query) || code.contains(query) || dialCode.contains(query);
     }).toList();
 
     searchedNationCodes.value = results;
   }
 
   void _showNationCodesDialog() {
-    searchedNationCodes =
-        ValueNotifier<List<NationCode>>(List.from(NationCode.values));
+    searchedNationCodes = ValueNotifier<List<NationCode>>(List.from(NationCode.values));
     showDialog(
       context: context,
       builder: (context) => Dialog(
@@ -42,6 +39,8 @@ mixin _NationCodePickerMixin on State<NationCodePicker> {
           child: Scaffold(
             appBar: AppBar(
               scrolledUnderElevation: 0,
+              elevation: 0,
+              shadowColor: Colors.transparent,
               automaticallyImplyLeading: false,
               title: CupertinoSearchTextField(
                 suffixMode: OverlayVisibilityMode.never,
@@ -73,8 +72,7 @@ mixin _NationCodePickerMixin on State<NationCodePicker> {
                           itemBuilder: (context, index) {
                             final nation = value[index];
                             return ListTile(
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10)),
+                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                               onTap: () {
                                 final selected = nation;
                                 selectedNationCode.value = selected;
@@ -93,8 +91,7 @@ mixin _NationCodePickerMixin on State<NationCodePicker> {
                                   package: 'nation_code_picker',
                                   fit: BoxFit.cover,
                                   scale: 1.5,
-                                  errorBuilder: (context, error, stackTrace) =>
-                                      const Icon(CupertinoIcons.flag_fill),
+                                  errorBuilder: (context, error, stackTrace) => const Icon(CupertinoIcons.flag_fill),
                                 ),
                               ),
                               title: Text(nation.name),

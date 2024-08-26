@@ -1,39 +1,15 @@
-<!--
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
-
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/tools/pub/writing-package-pages).
-
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/to/develop-packages).
--->
-
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
-
-## Features
-
-TODO: List what your package can do. Maybe include images, gifs, or videos.
-
-## Getting started
-
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+### This project provides a nation calling code selection widget.
 
 ## Usage
-
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder.
-
-```dart
-const like = 'sample';
 ```
+nation_code_picker:
+    git:
+      url: https://github.com/enescerrahoglu/nation_code_picker.git
+```
+![implementation](https://github.com/user-attachments/assets/6fc7273e-b451-447e-94cb-52b3bacfd547)
+![usage](https://github.com/user-attachments/assets/9de6bf01-4314-4c3f-ad0d-5b2afb816549)
 
-## Additional information
-
-TODO: Tell users more about the package: where to find more information, how to
-contribute to the package, how to file issues, what response they can expect
-from the package authors, and more.
+## Screenshots
+<img src="https://github.com/user-attachments/assets/b6753501-be7e-45fa-9df9-130cd24de7c0" height="500">
+<img src="https://github.com/user-attachments/assets/69f375a2-56e5-448b-94b8-32e03716f7a2" height="500">
+<img src="https://github.com/user-attachments/assets/e86d639c-02a0-488d-8645-ae7a93d22a00" height="500">

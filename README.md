@@ -1,4 +1,4 @@
-### This project provides a nation calling code selection widget.
+### This package provides a widget that allows you to select country dialing codes in your applications.
 
 ## Usage
 <!--

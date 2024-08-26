@@ -1,6 +1,6 @@
 name: nation_code_picker
-description: "A nation calling code selection widget."
-version: 0.0.3
+description: "This package provides a widget that allows you to select country dialing codes in your applications."
+version: 0.0.5
 homepage: https://github.com/enescerrahoglu/nation_code_picker
 
 environment:

@@ -25,7 +25,8 @@ class NationCodePicker extends StatefulWidget {
   State<NationCodePicker> createState() => _NationCodePickerState();
 }
 
-class _NationCodePickerState extends State<NationCodePicker> with _NationCodePickerMixin {
+class _NationCodePickerState extends State<NationCodePicker>
+    with _NationCodePickerMixin {
   @override
   Widget build(BuildContext context) {
     return CupertinoButton(
@@ -48,7 +49,8 @@ class _NationCodePickerState extends State<NationCodePicker> with _NationCodePic
                     package: 'nation_code_picker',
                     fit: BoxFit.cover,
                     scale: 2.25,
-                    errorBuilder: (context, error, stackTrace) => const Icon(CupertinoIcons.flag_fill),
+                    errorBuilder: (context, error, stackTrace) =>
+                        const Icon(CupertinoIcons.flag_fill),
                   ),
                 ),
               if (nation != null) const SizedBox(width: 5),

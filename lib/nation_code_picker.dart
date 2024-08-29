@@ -6,10 +6,13 @@ import 'package:nation_code_picker/src/nation_code_state.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:nation_code_picker/src/widgets/nation_code_picker_dialog/nation_code_picker_dialog_view.dart';
 
-export 'package:nation_code_picker/nation_code_picker.dart' show NationCodePicker;
+export 'package:nation_code_picker/nation_code_picker.dart'
+    show NationCodePicker;
 export 'package:nation_code_picker/src/nation_codes.dart' show NationCodes;
-export 'package:nation_code_picker/src/nation_code_state.dart' hide NationCodeState;
-export 'package:nation_code_picker/src/components/flag_component.dart' hide FlagComponent;
+export 'package:nation_code_picker/src/nation_code_state.dart'
+    hide NationCodeState;
+export 'package:nation_code_picker/src/components/flag_component.dart'
+    hide FlagComponent;
 export 'package:nation_code_picker/src/widgets/nation_code_picker_dialog/nation_code_picker_dialog_view.dart'
     hide NationCodePickerDialogView, NationCodeDialogExtension;
 
@@ -57,7 +60,8 @@ final class NationCodePicker extends StatefulWidget {
   State<NationCodePicker> createState() => _NationCodePickerState();
 }
 
-class _NationCodePickerState extends State<NationCodePicker> with _NationCodePickerMixin {
+class _NationCodePickerState extends State<NationCodePicker>
+    with _NationCodePickerMixin {
   @override
   Widget build(BuildContext context) {
     return CupertinoButton(

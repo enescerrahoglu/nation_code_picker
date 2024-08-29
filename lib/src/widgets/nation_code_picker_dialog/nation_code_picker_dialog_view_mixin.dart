@@ -7,10 +7,13 @@ mixin _NationCodePickerDialogViewMixin on State<NationCodePickerDialogView> {
       final name = nation.name.toLowerCase();
       final code = nation.code.toLowerCase();
       final dialCode = nation.dialCode.toLowerCase();
-      return name.contains(query) || code.contains(query) || dialCode.contains(query);
+      return name.contains(query) ||
+          code.contains(query) ||
+          dialCode.contains(query);
     }).toList();
 
-    widget.stateNotifier.value = widget.stateNotifier.value.copyWith(searchedNationCodes: results);
+    widget.stateNotifier.value =
+        widget.stateNotifier.value.copyWith(searchedNationCodes: results);
   }
 }
 

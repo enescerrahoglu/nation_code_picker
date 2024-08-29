@@ -18,10 +18,12 @@ class NationCodePickerDialogView extends StatefulWidget {
   });
 
   @override
-  State<NationCodePickerDialogView> createState() => _NationCodePickerDialogViewState();
+  State<NationCodePickerDialogView> createState() =>
+      _NationCodePickerDialogViewState();
 }
 
-class _NationCodePickerDialogViewState extends State<NationCodePickerDialogView> with _NationCodePickerDialogViewMixin {
+class _NationCodePickerDialogViewState extends State<NationCodePickerDialogView>
+    with _NationCodePickerDialogViewMixin {
   @override
   Widget build(BuildContext context) {
     return Dialog(
@@ -67,8 +69,9 @@ class _NationCodePickerDialogViewState extends State<NationCodePickerDialogView>
                             ),
                             onTap: () {
                               final selected = nation;
-                              widget.stateNotifier.value =
-                                  widget.stateNotifier.value.copyWith(selectedNationCode: selected);
+                              widget.stateNotifier.value = widget
+                                  .stateNotifier.value
+                                  .copyWith(selectedNationCode: selected);
 
                               if (widget.onNationSelected != null) {
                                 widget.onNationSelected!(selected);

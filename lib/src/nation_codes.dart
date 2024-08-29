@@ -1,4 +1,4 @@
-enum NationCode {
+enum NationCodes {
   tr("Türkiye", "TR", "+90"),
   af("افغانستان", "AF", "+93"),
   ax("Åland", "AX", "+358"),
@@ -246,7 +246,7 @@ enum NationCode {
   zm("Zambia", "ZM", "+260"),
   zw("Zimbabwe", "ZW", "+263");
 
-  const NationCode(this.name, this.code, this.dialCode);
+  const NationCodes(this.name, this.code, this.dialCode);
 
   final String name;
   final String code;

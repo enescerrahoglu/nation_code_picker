@@ -135,10 +135,10 @@ packages:
     dependency: "direct main"
     description:
       name: nation_code_picker
-      sha256: "5b631196b60d247b7282a5e2aba12aacff2f732f473ef87c92202c7f5497a0bd"
+      sha256: "80e07796b76c297fca81293a80db00328ddef801f4859430eb74fd057000cc0f"
       url: "https://pub.dev"
     source: hosted
-    version: "0.0.10"
+    version: "0.0.11"
   path:
     dependency: transitive
     description:

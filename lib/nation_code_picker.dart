@@ -1,70 +1,97 @@
 library nation_code_picker;
 
-import 'package:flutter/material.dart';
-import 'package:nation_code_picker/nation_codes.dart';
+import 'package:nation_code_picker/src/components/flag_component.dart';
+import 'package:nation_code_picker/src/nation_codes.dart';
+import 'package:nation_code_picker/src/nation_code_state.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:nation_code_picker/src/widgets/nation_code_picker_dialog/nation_code_picker_dialog_view.dart';
+
+export 'package:nation_code_picker/nation_code_picker.dart' show NationCodePicker;
+export 'package:nation_code_picker/src/nation_codes.dart' show NationCodes;
+export 'package:nation_code_picker/src/nation_code_state.dart' hide NationCodeState;
+export 'package:nation_code_picker/src/components/flag_component.dart' hide FlagComponent;
+export 'package:nation_code_picker/src/widgets/nation_code_picker_dialog/nation_code_picker_dialog_view.dart'
+    hide NationCodePickerDialogView, NationCodeDialogExtension;
+
 part 'nation_code_picker_mixin.dart';
 
-class NationCodePicker extends StatefulWidget {
-  final NationCode defaultNationCode;
-  final void Function(NationCode)? onNationSelected;
-  final Color? color;
-  final String? fontFamily;
-  final FontWeight? fontWeight;
+final class NationCodePicker extends StatefulWidget {
+  /// The default [NationCodes] to be selected when the picker is first shown.
+  /// If not provided, [NationCodes.US] is used.
+  final NationCodes defaultNationCode;
 
+  /// Callback function that is called when a nation code is selected.
+  /// If null, no action is taken when a nation is selected.
+  final void Function(NationCodes)? onNationSelected;
+
+  /// The color of the text displaying the nation's dial code.
+  /// Defaults to [CupertinoColors.label].
+  final Color? dialCodeColor;
+
+  /// The font family for the text displaying the nation's dial code.
+  /// Defaults to the system font.
+  final String? dialCodeFontFamily;
+
+  /// The font weight for the text displaying the nation's dial code.
+  /// Defaults to [FontWeight.normal].
+  final FontWeight? dialCodeFontWeight;
+
+  /// Creates a [NationCodePicker] widget.
+  ///
+  /// The [defaultNationCode] must not be null.
+  /// The default values are:
+  /// * `defaultNationCode`: `NationCodes.US`
+  /// * `color`: `CupertinoColors.label`
+  /// * `fontFamily`: `null` (system default)
+  /// * `fontWeight`: `FontWeight.normal`
   const NationCodePicker({
     super.key,
     required this.defaultNationCode,
     this.onNationSelected,
-    this.color,
-    this.fontFamily,
-    this.fontWeight,
+    this.dialCodeColor,
+    this.dialCodeFontFamily,
+    this.dialCodeFontWeight,
   });
 
   @override
   State<NationCodePicker> createState() => _NationCodePickerState();
 }
 
-class _NationCodePickerState extends State<NationCodePicker>
-    with _NationCodePickerMixin {
+class _NationCodePickerState extends State<NationCodePicker> with _NationCodePickerMixin {
   @override
   Widget build(BuildContext context) {
     return CupertinoButton(
       padding: EdgeInsets.zero,
       minSize: 0,
       onPressed: () {
-        _showNationCodesDialog();
+        NationCodeDialogExtension.showNationCodesDialog(
+          context,
+          _stateNotifier,
+          widget.defaultNationCode,
+          widget.onNationSelected,
+        );
       },
-      child: ValueListenableBuilder<NationCode?>(
-        valueListenable: selectedNationCode,
-        builder: (context, nation, child) {
-          return Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              if (nation != null)
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(3),
-                  child: Image.asset(
-                    'assets/flags/${nation.code.toLowerCase()}.png',
-                    package: 'nation_code_picker',
-                    fit: BoxFit.cover,
-                    scale: 2.25,
-                    errorBuilder: (context, error, stackTrace) =>
-                        const Icon(CupertinoIcons.flag_fill),
-                  ),
-                ),
-              if (nation != null) const SizedBox(width: 5),
-              if (nation != null)
-                Text(
-                  nation.dialCode,
-                  style: TextStyle(
-                    color: widget.color,
-                    fontWeight: widget.fontWeight,
-                    fontFamily: widget.fontFamily,
-                  ),
-                ),
-            ],
-          );
+      child: ValueListenableBuilder<NationCodeState>(
+        valueListenable: _stateNotifier,
+        builder: (context, state, child) {
+          final nation = state.selectedNationCode;
+          return nation == null
+              ? const SizedBox()
+              : Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    FlagComponent(nation: nation, scale: 2),
+                    const SizedBox(width: 5),
+                    Text(
+                      nation.dialCode,
+                      style: TextStyle(
+                        color: widget.dialCodeColor,
+                        fontWeight: widget.dialCodeFontWeight,
+                        fontFamily: widget.dialCodeFontFamily,
+                      ),
+                    ),
+                  ],
+                );
         },
       ),
     );

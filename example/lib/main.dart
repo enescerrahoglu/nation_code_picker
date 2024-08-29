@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:nation_code_picker/nation_code_picker.dart';
-import 'package:nation_code_picker/nation_codes.dart';
 
 void main() {
   runApp(const MyApp());
@@ -31,7 +30,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  NationCode _selectedNationCode = NationCode.tr;
+  NationCodes _selectedNationCode = NationCodes.tr;
 
   @override
   Widget build(BuildContext context) {
@@ -45,8 +44,10 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisSize: MainAxisSize.min,
           children: [
             NationCodePicker(
-              color: Colors.deepPurple,
               defaultNationCode: _selectedNationCode,
+              dialCodeColor: Colors.deepPurple,
+              dialCodeFontWeight: FontWeight.bold,
+              dialCodeFontFamily: 'Ubuntu',
               onNationSelected: (p0) {
                 setState(() {
                   _selectedNationCode = p0;
@@ -60,12 +61,9 @@ class _MyHomePageState extends State<MyHomePage> {
                 children: [
                   const Text("Selected nation data:"),
                   ListTile(
-                    leading: Text(_selectedNationCode.code,
-                        style: const TextStyle(fontSize: 20)),
-                    title: Text(_selectedNationCode.name,
-                        style: const TextStyle(fontSize: 20)),
-                    trailing: Text(_selectedNationCode.dialCode,
-                        style: const TextStyle(fontSize: 20)),
+                    leading: Text(_selectedNationCode.code, style: const TextStyle(fontSize: 20)),
+                    title: Text(_selectedNationCode.name, style: const TextStyle(fontSize: 20)),
+                    trailing: Text(_selectedNationCode.dialCode, style: const TextStyle(fontSize: 20)),
                   ),
                 ],
               ),

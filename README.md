@@ -3,10 +3,10 @@
 ![nation_code_picker](https://github.com/user-attachments/assets/9879684e-b9a1-46f3-a203-088fd3f0b768)
 
 ## Features
-__Quality flag images__
-__Multi-language support__
-__Customizable UI__
-__Simple use__
+__Quality flag images____
+__Multi-language support____
+__Customizable UI____
+__Simple use____
 
 ## Usage
 <!--

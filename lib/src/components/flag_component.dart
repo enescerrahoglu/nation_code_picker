@@ -16,8 +16,7 @@ class FlagComponent extends StatelessWidget {
         package: 'nation_code_picker',
         fit: BoxFit.cover,
         scale: scale,
-        errorBuilder: (context, error, stackTrace) =>
-            const Icon(CupertinoIcons.flag_fill),
+        errorBuilder: (context, error, stackTrace) => const Icon(CupertinoIcons.flag_fill),
       ),
     );
   }

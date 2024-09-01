@@ -6,6 +6,13 @@ mixin _NationCodePickerMixin on State<NationCodePicker> {
   @override
   void initState() {
     super.initState();
+
+    Future.delayed(Duration.zero, () async {
+      if (widget.locale != null) {
+        await NationCodeLocalization.instance.load(widget.locale);
+      }
+    });
+
     _stateNotifier = ValueNotifier(
       NationCodeState(
         searchedNationCodes: List.from(NationCodes.values),

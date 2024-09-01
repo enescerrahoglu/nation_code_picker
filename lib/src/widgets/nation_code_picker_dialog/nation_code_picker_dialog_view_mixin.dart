@@ -4,32 +4,45 @@ mixin _NationCodePickerDialogViewMixin on State<NationCodePickerDialogView> {
   void _searchCountries(String query) {
     query = query.trim().toLowerCase();
     final results = NationCodes.values.where((nation) {
-      final name = nation.name.toLowerCase();
+      final name = NationCodeLocalization.instance.translate(nation.code)?.toLowerCase() ?? nation.name.toLowerCase();
       final code = nation.code.toLowerCase();
       final dialCode = nation.dialCode.toLowerCase();
-      return name.contains(query) ||
-          code.contains(query) ||
-          dialCode.contains(query);
+      return name.contains(query) || code.contains(query) || dialCode.contains(query);
     }).toList();
 
-    widget.stateNotifier.value =
-        widget.stateNotifier.value.copyWith(searchedNationCodes: results);
+    widget.stateNotifier.value = widget.stateNotifier.value.copyWith(searchedNationCodes: results);
+  }
+
+  Widget _buildSearch({EdgeInsetsGeometry? padding}) {
+    return widget.hideSearch
+        ? const SizedBox()
+        : Padding(
+            padding: padding ?? EdgeInsets.zero,
+            child: CupertinoSearchTextField(
+              suffixMode: OverlayVisibilityMode.never,
+              onChanged: _searchCountries,
+            ),
+          );
   }
 }
 
 extension NationCodeDialogExtension on NationCodePicker {
   static void showNationCodesDialog(
-    BuildContext context,
-    ValueNotifier<NationCodeState> stateNotifier,
-    NationCodes defaultNationCode,
+    BuildContext context, {
+    required ValueNotifier<NationCodeState> stateNotifier,
+    required NationCodes defaultNationCode,
+    String? title,
     void Function(NationCodes)? onNationSelected,
-  ) {
+    bool hideSearch = false,
+  }) {
     showDialog(
       context: context,
       builder: (context) => NationCodePickerDialogView(
         stateNotifier: stateNotifier,
         defaultNationCode: defaultNationCode,
         onNationSelected: onNationSelected,
+        title: title,
+        hideSearch: hideSearch,
       ),
     );
   }

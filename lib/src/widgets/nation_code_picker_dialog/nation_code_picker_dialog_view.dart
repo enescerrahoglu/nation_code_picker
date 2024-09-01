@@ -23,10 +23,12 @@ class NationCodePickerDialogView extends StatefulWidget {
   });
 
   @override
-  State<NationCodePickerDialogView> createState() => _NationCodePickerDialogViewState();
+  State<NationCodePickerDialogView> createState() =>
+      _NationCodePickerDialogViewState();
 }
 
-class _NationCodePickerDialogViewState extends State<NationCodePickerDialogView> with _NationCodePickerDialogViewMixin {
+class _NationCodePickerDialogViewState extends State<NationCodePickerDialogView>
+    with _NationCodePickerDialogViewMixin {
   @override
   Widget build(BuildContext context) {
     return Dialog(
@@ -37,7 +39,9 @@ class _NationCodePickerDialogViewState extends State<NationCodePickerDialogView>
             scrolledUnderElevation: 0,
             backgroundColor: Colors.transparent,
             automaticallyImplyLeading: false,
-            title: widget.title != null ? Text(widget.title ?? "") : _buildSearch(),
+            title: widget.title != null
+                ? Text(widget.title ?? "")
+                : _buildSearch(),
             actions: [
               CupertinoButton(
                 child: const Icon(CupertinoIcons.xmark),
@@ -49,7 +53,9 @@ class _NationCodePickerDialogViewState extends State<NationCodePickerDialogView>
           ),
           body: Column(
             children: [
-              if (widget.title != null) _buildSearch(padding: const EdgeInsets.symmetric(horizontal: 10)),
+              if (widget.title != null)
+                _buildSearch(
+                    padding: const EdgeInsets.symmetric(horizontal: 10)),
               Expanded(
                 child: ValueListenableBuilder<NationCodeState>(
                   valueListenable: widget.stateNotifier,
@@ -68,7 +74,8 @@ class _NationCodePickerDialogViewState extends State<NationCodePickerDialogView>
                                 padding: const EdgeInsets.all(10),
                                 itemCount: state.searchedNationCodes.length,
                                 itemBuilder: (context, index) {
-                                  final nation = state.searchedNationCodes[index];
+                                  final nation =
+                                      state.searchedNationCodes[index];
                                   return ListTile(
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(10),
@@ -76,7 +83,8 @@ class _NationCodePickerDialogViewState extends State<NationCodePickerDialogView>
                                     onTap: () {
                                       final selected = nation;
                                       widget.stateNotifier.value =
-                                          widget.stateNotifier.value.copyWith(selectedNationCode: selected);
+                                          widget.stateNotifier.value.copyWith(
+                                              selectedNationCode: selected);
 
                                       if (widget.onNationSelected != null) {
                                         widget.onNationSelected!(selected);
@@ -86,15 +94,21 @@ class _NationCodePickerDialogViewState extends State<NationCodePickerDialogView>
                                         Navigator.pop(context);
                                       }
                                     },
-                                    leading: FlagComponent(nation: nation, scale: 12),
-                                    title: Text(NationCodeLocalization.instance.translate(nation.code) ?? nation.name),
+                                    leading: FlagComponent(
+                                        nation: nation, scale: 12),
+                                    title: Text(NationCodeLocalization.instance
+                                            .translate(nation.code) ??
+                                        nation.name),
                                     trailing: Text(
                                       nation.dialCode,
-                                      style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+                                      style: const TextStyle(
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.bold),
                                     ),
                                   );
                                 },
-                                separatorBuilder: (context, index) => const Divider(
+                                separatorBuilder: (context, index) =>
+                                    const Divider(
                                   thickness: 0.5,
                                   height: 0,
                                   indent: 12,

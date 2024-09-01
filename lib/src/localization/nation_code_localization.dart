@@ -46,7 +46,8 @@ class SupportedLanguage {
 
   final Locale locale;
 
-  bool isSupported(Locale locale) => supportedLanguages.contains(locale.languageCode);
+  bool isSupported(Locale locale) =>
+      supportedLanguages.contains(locale.languageCode);
 
   static const supportedLanguages = [
     'af',

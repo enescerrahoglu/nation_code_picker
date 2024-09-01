@@ -4,13 +4,19 @@ mixin _NationCodePickerDialogViewMixin on State<NationCodePickerDialogView> {
   void _searchCountries(String query) {
     query = query.trim().toLowerCase();
     final results = NationCodes.values.where((nation) {
-      final name = NationCodeLocalization.instance.translate(nation.code)?.toLowerCase() ?? nation.name.toLowerCase();
+      final name = NationCodeLocalization.instance
+              .translate(nation.code)
+              ?.toLowerCase() ??
+          nation.name.toLowerCase();
       final code = nation.code.toLowerCase();
       final dialCode = nation.dialCode.toLowerCase();
-      return name.contains(query) || code.contains(query) || dialCode.contains(query);
+      return name.contains(query) ||
+          code.contains(query) ||
+          dialCode.contains(query);
     }).toList();
 
-    widget.stateNotifier.value = widget.stateNotifier.value.copyWith(searchedNationCodes: results);
+    widget.stateNotifier.value =
+        widget.stateNotifier.value.copyWith(searchedNationCodes: results);
   }
 
   Widget _buildSearch({EdgeInsetsGeometry? padding}) {

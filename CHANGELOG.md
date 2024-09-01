@@ -1,3 +1,6 @@
-## 0.0.1
+## 1.0.0
 
-* TODO: Describe initial release.
+- Quality flag images
+- Multi-language support
+- Customizable UI
+- Simple use

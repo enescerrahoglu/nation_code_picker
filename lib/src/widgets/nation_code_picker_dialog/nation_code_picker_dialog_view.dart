@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:nation_code_picker/nation_code_picker.dart';
 import 'package:nation_code_picker/src/localization/nation_code_localization.dart';
 import 'package:nation_code_picker/src/nation_code_state.dart';
-import 'package:nation_code_picker/src/components/flag_component.dart';
+import 'package:nation_code_picker/flag_component.dart';
 part 'nation_code_picker_dialog_view_mixin.dart';
 
 class NationCodePickerDialogView extends StatefulWidget {

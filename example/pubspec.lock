@@ -142,12 +142,10 @@ packages:
   nation_code_picker:
     dependency: "direct main"
     description:
-      path: "."
-      ref: HEAD
-      resolved-ref: "4c5c79db775b88059ae20178829289bc834b5825"
-      url: "https://github.com/enescerrahoglu/nation_code_picker.git"
-    source: git
-    version: "0.0.11"
+      path: ".."
+      relative: true
+    source: path
+    version: "1.0.0"
   path:
     dependency: transitive
     description:

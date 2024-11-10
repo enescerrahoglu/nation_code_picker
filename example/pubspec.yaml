@@ -35,8 +35,7 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
   nation_code_picker:
-    git:
-      url: https://github.com/enescerrahoglu/nation_code_picker.git
+    path: ../
 
 dev_dependencies:
   flutter_test:

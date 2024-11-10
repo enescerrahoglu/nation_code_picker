@@ -1,7 +1,7 @@
 library nation_code_picker;
 
 import 'package:flutter/material.dart';
-import 'package:nation_code_picker/src/components/flag_component.dart';
+import 'package:nation_code_picker/flag_component.dart';
 import 'package:nation_code_picker/src/localization/nation_code_localization.dart';
 import 'package:nation_code_picker/src/nation_codes.dart';
 import 'package:nation_code_picker/src/nation_code_state.dart';
@@ -13,8 +13,7 @@ export 'package:nation_code_picker/nation_code_picker.dart'
 export 'package:nation_code_picker/src/nation_codes.dart' show NationCodes;
 export 'package:nation_code_picker/src/nation_code_state.dart'
     hide NationCodeState;
-export 'package:nation_code_picker/src/components/flag_component.dart'
-    hide FlagComponent;
+export 'package:nation_code_picker/flag_component.dart' hide FlagComponent;
 export 'package:nation_code_picker/src/widgets/nation_code_picker_dialog/nation_code_picker_dialog_view.dart'
     hide NationCodePickerDialogView, NationCodeDialogExtension;
 

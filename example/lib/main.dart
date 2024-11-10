@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nation_code_picker/flag_component.dart';
 import 'package:nation_code_picker/nation_code_picker.dart';
 
 void main() {
@@ -70,6 +71,14 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ],
               ),
+            ),
+            const SizedBox(height: 30),
+            const Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text('FlagComponent'),
+                FlagComponent(nation: NationCodes.tr),
+              ],
             ),
           ],
         ),

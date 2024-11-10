@@ -3,10 +3,11 @@
 ![nation_code_picker](https://github.com/user-attachments/assets/fd567087-6076-44a5-861b-1c4c39a7c742)
 
 ## Features
-__Quality flag images__ <br />
-__Multi-language support__ <br />
-__Customizable UI__ <br />
-__Simple use__
+- Accessible flag assets as components
+- Quality flag images
+- Multi-language support
+- Customizable UI
+- Simple use
 
 ## Usage
 ![usage](https://github.com/user-attachments/assets/379af67b-452e-4eec-b543-d0adf169de0b)

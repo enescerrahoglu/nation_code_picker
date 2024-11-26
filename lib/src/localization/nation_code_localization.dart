@@ -283,7 +283,6 @@ class SupportedLanguage {
     'vg',
     'vi',
     'wf',
-    'eh',
     'ye',
     'zm',
     'zw',

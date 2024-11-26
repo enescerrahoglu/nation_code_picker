@@ -241,7 +241,6 @@ enum NationCodes {
   vg("Virgin Islands (British)", "VG", "+1284"),
   vi("Virgin Islands (U.S.)", "VI", "+1340"),
   wf("Wallis et Futuna", "WF", "+681"),
-  eh("الصحراء الغربية", "EH", "+212"),
   ye("اليَمَن", "YE", "+967"),
   zm("Zambia", "ZM", "+260"),
   zw("Zimbabwe", "ZW", "+263");

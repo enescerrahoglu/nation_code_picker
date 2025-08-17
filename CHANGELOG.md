@@ -8,3 +8,7 @@
 - Multi-language support
 - Customizable UI
 - Simple use
+
+## 1.1.1
+
+- Updated Syrian flag: The Syrian flag in the nation_code_picker package has been refreshed to reflect the latest version.

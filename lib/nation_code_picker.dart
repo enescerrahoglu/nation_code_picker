@@ -8,11 +8,9 @@ import 'package:nation_code_picker/src/nation_code_state.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:nation_code_picker/src/widgets/nation_code_picker_dialog/nation_code_picker_dialog_view.dart';
 
-export 'package:nation_code_picker/nation_code_picker.dart'
-    show NationCodePicker;
+export 'package:nation_code_picker/nation_code_picker.dart' show NationCodePicker;
 export 'package:nation_code_picker/src/nation_codes.dart' show NationCodes;
-export 'package:nation_code_picker/src/nation_code_state.dart'
-    hide NationCodeState;
+export 'package:nation_code_picker/src/nation_code_state.dart' hide NationCodeState;
 export 'package:nation_code_picker/flag_component.dart' hide FlagComponent;
 export 'package:nation_code_picker/src/widgets/nation_code_picker_dialog/nation_code_picker_dialog_view.dart'
     hide NationCodePickerDialogView, NationCodeDialogExtension;
@@ -88,16 +86,14 @@ final class NationCodePicker extends StatefulWidget {
   State<NationCodePicker> createState() => _NationCodePickerState();
 }
 
-class _NationCodePickerState extends State<NationCodePicker>
-    with _NationCodePickerMixin {
+class _NationCodePickerState extends State<NationCodePicker> with _NationCodePickerMixin {
   @override
   Widget build(BuildContext context) {
     return CupertinoButton(
       padding: EdgeInsets.zero,
-      minSize: 0,
+      minimumSize: Size.zero,
       onPressed: () {
-        _stateNotifier.value = _stateNotifier.value
-            .copyWith(searchedNationCodes: List.from(NationCodes.values));
+        _stateNotifier.value = _stateNotifier.value.copyWith(searchedNationCodes: List.from(NationCodes.values));
         NationCodeDialogExtension.showNationCodesDialog(
           context,
           stateNotifier: _stateNotifier,
@@ -116,21 +112,15 @@ class _NationCodePickerState extends State<NationCodePicker>
               : Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    if (!widget.hideFlag)
-                      FlagComponent(nation: nation, scale: 15),
-                    if (!widget.hideFlag && !widget.hideDialCode)
-                      const SizedBox(width: 5),
+                    if (!widget.hideFlag) FlagComponent(nation: nation, scale: 15),
+                    if (!widget.hideFlag && !widget.hideDialCode) const SizedBox(width: 5),
                     if (!widget.hideDialCode)
                       Text(
                         nation.dialCode,
                         style: TextStyle(
                           color: widget.dialCodeColor,
                           fontWeight: widget.dialCodeFontWeight,
-                          fontFamily: widget.dialCodeFontFamily ??
-                              Theme.of(context)
-                                  .textTheme
-                                  .titleMedium
-                                  ?.fontFamily,
+                          fontFamily: widget.dialCodeFontFamily ?? Theme.of(context).textTheme.titleMedium?.fontFamily,
                         ),
                       ),
                   ],

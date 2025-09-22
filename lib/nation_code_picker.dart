@@ -108,7 +108,7 @@ class _NationCodePickerState extends State<NationCodePicker> with _NationCodePic
         builder: (context, state, child) {
           final nation = state.selectedNationCode;
           return nation == null
-              ? const SizedBox()
+              ? const SizedBox.shrink()
               : Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [

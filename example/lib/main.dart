@@ -62,22 +62,19 @@ class _MyHomePageState extends State<MyHomePage> {
                 children: [
                   const Text("Selected nation data:"),
                   ListTile(
-                    leading: Text(_selectedNationCode.code,
-                        style: const TextStyle(fontSize: 20)),
-                    title: Text(_selectedNationCode.name,
-                        style: const TextStyle(fontSize: 20)),
-                    trailing: Text(_selectedNationCode.dialCode,
-                        style: const TextStyle(fontSize: 20)),
+                    leading: Text(_selectedNationCode.code, style: const TextStyle(fontSize: 20)),
+                    title: Text(_selectedNationCode.name, style: const TextStyle(fontSize: 20)),
+                    trailing: Text(_selectedNationCode.dialCode, style: const TextStyle(fontSize: 20)),
                   ),
                 ],
               ),
             ),
             const SizedBox(height: 30),
-            const Column(
+            Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('FlagComponent'),
-                FlagComponent(nation: NationCodes.tr),
+                const Text('FlagComponent'),
+                FlagComponent(nation: _selectedNationCode),
               ],
             ),
           ],

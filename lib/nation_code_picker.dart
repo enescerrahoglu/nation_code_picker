@@ -57,9 +57,41 @@ final class NationCodePicker extends StatefulWidget {
   /// If not provided, default nation names are shown.
   final Locale? locale;
 
+  /// The text style for the dial code.
+  /// If provided, overrides [dialCodeColor], [dialCodeFontFamily], and [dialCodeFontWeight].
+  /// If not provided, the individual properties are used to style the dial text.
+  /// If neither is provided, defaults to the system style.
+  final TextStyle? dialCodeTextStyle;
+
+  /// The scale of the flag image.
+  /// Must be between 0.1 and 1.0 (inclusive).
+  /// 0.5 corresponds to size 15, 0.1 to smaller size, and 1.0 to larger size.
+  /// If not provided, defaults to `0.5`.
+  final double? flagScale;
+
+  /// Asserts that [flagScale] is within the valid range if provided.
+  void _assertFlagScale() {
+    assert(
+      flagScale == null || (flagScale! >= 0.1 && flagScale! <= 1.0),
+      'flagScale must be between 0.1 and 1.0 (inclusive)',
+    );
+  }
+
+  /// Converts the scale value to actual pixel size.
+  /// 0.1 -> 30 pixels (maximum size, since FlagComponent uses inverse scaling)
+  /// 0.5 -> 15 pixels (default size)
+  /// 1.0 -> 3 pixels (minimum size, since FlagComponent uses inverse scaling)
+  double _getScaledSize() {
+    final scale = flagScale ?? 0.5;
+    // Inverse linear interpolation: 0.1 maps to 30, 0.5 maps to 15, 1.0 maps to 3
+    // Formula: size = 30 - (scale - 0.1) * (30 - 3) / (1.0 - 0.1)
+    return 30 - (scale - 0.1) * 27 / 0.9;
+  }
+
   /// Creates a [NationCodePicker] widget.
   ///
   /// The [defaultNationCode] must not be null.
+  /// The [flagScale] must be between 0.1 and 1.0 (inclusive).
   /// The default values are:
   /// * `dialCodeColor`: `CupertinoColors.label`
   /// * `dialCodeFontFamily`: `null` (system default)
@@ -68,7 +100,8 @@ final class NationCodePicker extends StatefulWidget {
   /// * `hideDialCode`: `false`
   /// * `title`: `null`
   /// * `locale`: `null`
-  const NationCodePicker({
+  /// * `flagScale`: `0.5` (corresponds to size 15)
+  NationCodePicker({
     super.key,
     required this.defaultNationCode,
     this.onNationSelected,
@@ -80,7 +113,11 @@ final class NationCodePicker extends StatefulWidget {
     this.hideDialCode = false,
     this.title,
     this.locale,
-  });
+    this.dialCodeTextStyle,
+    this.flagScale = 0.5,
+  }) {
+    _assertFlagScale();
+  }
 
   @override
   State<NationCodePicker> createState() => _NationCodePickerState();
@@ -112,16 +149,22 @@ class _NationCodePickerState extends State<NationCodePicker> with _NationCodePic
               : Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    if (!widget.hideFlag) FlagComponent(nation: nation, scale: 15),
+                    if (!widget.hideFlag)
+                      FlagComponent(
+                        nation: nation,
+                        scale: widget._getScaledSize(),
+                      ),
                     if (!widget.hideFlag && !widget.hideDialCode) const SizedBox(width: 5),
                     if (!widget.hideDialCode)
                       Text(
                         nation.dialCode,
-                        style: TextStyle(
-                          color: widget.dialCodeColor,
-                          fontWeight: widget.dialCodeFontWeight,
-                          fontFamily: widget.dialCodeFontFamily ?? Theme.of(context).textTheme.titleMedium?.fontFamily,
-                        ),
+                        style: widget.dialCodeTextStyle ??
+                            TextStyle(
+                              color: widget.dialCodeColor,
+                              fontWeight: widget.dialCodeFontWeight,
+                              fontFamily:
+                                  widget.dialCodeFontFamily ?? Theme.of(context).textTheme.titleMedium?.fontFamily,
+                            ),
                       ),
                   ],
                 );

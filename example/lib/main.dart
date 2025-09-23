@@ -45,6 +45,7 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisSize: MainAxisSize.min,
           children: [
             NationCodePicker(
+              flagScale: 0.6,
               defaultNationCode: _selectedNationCode,
               dialCodeColor: Colors.deepPurple,
               dialCodeFontWeight: FontWeight.bold,

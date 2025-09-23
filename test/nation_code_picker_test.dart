@@ -3,10 +3,9 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:nation_code_picker/nation_code_picker.dart';
 
 void main() {
-  testWidgets('NationCodePicker renders with default values',
-      (WidgetTester tester) async {
+  testWidgets('NationCodePicker renders with default values', (WidgetTester tester) async {
     await tester.pumpWidget(
-      const MaterialApp(
+      MaterialApp(
         home: Scaffold(
           body: NationCodePicker(
             defaultNationCode: NationCodes.us,
@@ -19,8 +18,7 @@ void main() {
     expect(find.text('+1'), findsOneWidget);
   });
 
-  testWidgets(
-      'NationCodePicker calls onNationSelected callback when a nation is selected',
+  testWidgets('NationCodePicker calls onNationSelected callback when a nation is selected',
       (WidgetTester tester) async {
     NationCodes? selectedNation;
     await tester.pumpWidget(

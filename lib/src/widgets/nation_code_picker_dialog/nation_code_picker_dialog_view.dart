@@ -32,6 +32,7 @@ class _NationCodePickerDialogViewState extends State<NationCodePickerDialogView>
   @override
   Widget build(BuildContext context) {
     return Dialog(
+      backgroundColor: Colors.transparent,
       child: ClipRRect(
         borderRadius: BorderRadius.circular(15),
         child: Scaffold(

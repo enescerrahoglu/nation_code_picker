@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nation_code_picker/flag_component.dart';
 import 'package:nation_code_picker/nation_code_picker.dart';
+import 'package:nation_code_picker/theme/theme.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,10 +14,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
+      // themeMode: ThemeMode.light,
+      theme: lightTheme,
+      darkTheme: darkTheme,
       home: const MyHomePage(title: 'Nation Code Picker'),
     );
   }

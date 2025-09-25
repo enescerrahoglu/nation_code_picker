@@ -39,6 +39,8 @@ class _NationCodePickerDialogViewState extends State<NationCodePickerDialogView>
             scrolledUnderElevation: 0,
             backgroundColor: Colors.transparent,
             automaticallyImplyLeading: false,
+            toolbarHeight: kToolbarHeight + 10,
+            titleSpacing: 0,
             title: widget.title != null
                 ? Text(widget.title ?? "")
                 : _buildSearch(),

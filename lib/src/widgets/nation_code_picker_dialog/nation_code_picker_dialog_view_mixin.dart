@@ -21,9 +21,9 @@ mixin _NationCodePickerDialogViewMixin on State<NationCodePickerDialogView> {
 
   Widget _buildSearch({EdgeInsetsGeometry? padding}) {
     return widget.hideSearch
-        ? const SizedBox()
+        ? const SizedBox.shrink()
         : Padding(
-            padding: padding ?? EdgeInsets.zero,
+            padding: padding ?? const EdgeInsets.only(left: 15),
             child: CupertinoSearchTextField(
               suffixMode: OverlayVisibilityMode.never,
               onChanged: _searchCountries,

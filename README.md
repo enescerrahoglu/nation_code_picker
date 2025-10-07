@@ -1,6 +1,6 @@
 # NationCodePicker
 ### This package provides a widget that allows you to select country dialing codes in your applications.
-<img width="1920" height="1080" alt="nation_code_picker" src="https://github.com/user-attachments/assets/f4de332a-f7a6-4d0d-852a-bc5f700114df" />
+![nation_code_picker](https://github.com/user-attachments/assets/f4de332a-f7a6-4d0d-852a-bc5f700114df)
 
 ## Features
 - Accessible flag assets as components

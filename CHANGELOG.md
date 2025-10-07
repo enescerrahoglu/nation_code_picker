@@ -1,4 +1,4 @@
-## 1.2.3
+## 1.2.4
 - Added `dialCodeTextStyle` parameter for comprehensive text styling of dial codes
 - Added `flagScale` parameter for customizable flag sizing (0.1-1.0 range)
 - Improved flag scaling logic with proper validation

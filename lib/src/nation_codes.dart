@@ -1,5 +1,4 @@
 enum NationCodes {
-  tr("Türkiye", "TR", "+90"),
   af("افغانستان", "AF", "+93"),
   ax("Åland", "AX", "+358"),
   al("Shqipëria", "AL", "+355"),
@@ -223,6 +222,7 @@ enum NationCodes {
   tg("Togo", "TG", "+228"),
   tk("Tokelau", "TK", "+690"),
   to("Tonga", "TO", "+676"),
+  tr("Türkiye", "TR", "+90"),
   tt("Trinidad and Tobago", "TT", "+1868"),
   tn("تونس", "TN", "+216"),
   tm("Türkmenistan", "TM", "+993"),

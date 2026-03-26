@@ -12,6 +12,8 @@ class NationCodePickerDialogView extends StatefulWidget {
   final String? title;
   final void Function(NationCodes)? onNationSelected;
   final bool hideSearch;
+  final TextStyle? searchBarTextStyle;
+  final TextStyle? searchBarPlaceholderStyle;
 
   const NationCodePickerDialogView({
     super.key,
@@ -20,15 +22,15 @@ class NationCodePickerDialogView extends StatefulWidget {
     this.title,
     this.onNationSelected,
     this.hideSearch = false,
+    this.searchBarTextStyle,
+    this.searchBarPlaceholderStyle,
   });
 
   @override
-  State<NationCodePickerDialogView> createState() =>
-      _NationCodePickerDialogViewState();
+  State<NationCodePickerDialogView> createState() => _NationCodePickerDialogViewState();
 }
 
-class _NationCodePickerDialogViewState extends State<NationCodePickerDialogView>
-    with _NationCodePickerDialogViewMixin {
+class _NationCodePickerDialogViewState extends State<NationCodePickerDialogView> with _NationCodePickerDialogViewMixin {
   @override
   Widget build(BuildContext context) {
     return Dialog(
@@ -44,7 +46,10 @@ class _NationCodePickerDialogViewState extends State<NationCodePickerDialogView>
             titleSpacing: 0,
             title: widget.title != null
                 ? Text(widget.title ?? "")
-                : _buildSearch(),
+                : _buildSearchBar(
+                    searchBarTextStyle: widget.searchBarTextStyle,
+                    searchBarPlaceholderStyle: widget.searchBarPlaceholderStyle,
+                  ),
             actions: [
               CupertinoButton(
                 child: const Icon(CupertinoIcons.xmark),
@@ -57,16 +62,17 @@ class _NationCodePickerDialogViewState extends State<NationCodePickerDialogView>
           body: Column(
             children: [
               if (widget.title != null)
-                _buildSearch(
-                    padding: const EdgeInsets.symmetric(horizontal: 10)),
+                _buildSearchBar(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  searchBarTextStyle: widget.searchBarTextStyle,
+                  searchBarPlaceholderStyle: widget.searchBarPlaceholderStyle,
+                ),
               Expanded(
                 child: ValueListenableBuilder<NationCodeState>(
                   valueListenable: widget.stateNotifier,
                   builder: (context, state, _) {
                     return state.searchedNationCodes.isEmpty
-                        ? const Center(
-                            child:
-                                Icon(CupertinoIcons.flag_slash_fill, size: 30))
+                        ? const Center(child: Icon(CupertinoIcons.flag_slash_fill, size: 30))
                         : CupertinoScrollbar(
                             child: Material(
                               color: Colors.transparent,
@@ -74,18 +80,14 @@ class _NationCodePickerDialogViewState extends State<NationCodePickerDialogView>
                                 padding: const EdgeInsets.all(10),
                                 itemCount: state.searchedNationCodes.length,
                                 itemBuilder: (context, index) {
-                                  final nation =
-                                      state.searchedNationCodes[index];
+                                  final nation = state.searchedNationCodes[index];
                                   return ListTile(
                                     splashColor: Colors.transparent,
-                                    shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(10)),
+                                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                                     onTap: () {
                                       final selected = nation;
                                       widget.stateNotifier.value =
-                                          widget.stateNotifier.value.copyWith(
-                                              selectedNationCode: selected);
+                                          widget.stateNotifier.value.copyWith(selectedNationCode: selected);
 
                                       if (widget.onNationSelected != null) {
                                         widget.onNationSelected!(selected);
@@ -95,25 +97,16 @@ class _NationCodePickerDialogViewState extends State<NationCodePickerDialogView>
                                         Navigator.pop(context);
                                       }
                                     },
-                                    leading: FlagComponent(
-                                        nation: nation, scale: 12),
-                                    title: Text(NationCodeLocalization.instance
-                                            .translate(nation.code) ??
-                                        nation.name),
+                                    leading: FlagComponent(nation: nation, scale: 12),
+                                    title: Text(NationCodeLocalization.instance.translate(nation.code) ?? nation.name),
                                     trailing: Text(
                                       nation.dialCode,
-                                      style: const TextStyle(
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.bold),
+                                      style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
                                     ),
                                   );
                                 },
                                 separatorBuilder: (context, index) =>
-                                    const Divider(
-                                        thickness: 0.5,
-                                        height: 0,
-                                        indent: 12,
-                                        endIndent: 12),
+                                    const Divider(thickness: 0.5, height: 0, indent: 12, endIndent: 12),
                               ),
                             ),
                           );

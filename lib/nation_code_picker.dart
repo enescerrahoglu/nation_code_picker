@@ -60,6 +60,16 @@ final class NationCodePicker extends StatefulWidget {
   /// If not provided, defaults to `0.5`.
   final double? flagScale;
 
+  /// The text style for the search bar.
+  /// If provided, used to style the search bar text.
+  /// Defaults to the system style if not provided.
+  final TextStyle? searchBarTextStyle;
+
+  /// The text style for the search bar placeholder.
+  /// If provided, used to style the search bar placeholder text.
+  /// Defaults to the system style if not provided.
+  final TextStyle? searchBarPlaceholderStyle;
+
   /// Asserts that [flagScale] is within the valid range if provided.
   void _assertFlagScale() {
     assert(
@@ -104,6 +114,8 @@ final class NationCodePicker extends StatefulWidget {
     this.locale,
     this.dialCodeTextStyle,
     this.flagScale = 0.5,
+    this.searchBarTextStyle,
+    this.searchBarPlaceholderStyle,
   }) {
     _assertFlagScale();
   }
@@ -140,6 +152,8 @@ class _NationCodePickerState extends State<NationCodePicker>
           onNationSelected: widget.onNationSelected,
           title: widget.title,
           hideSearch: widget.hideSearch,
+          searchBarPlaceholderStyle: widget.searchBarPlaceholderStyle,
+          searchBarTextStyle: widget.searchBarTextStyle,
         );
       },
       child: ValueListenableBuilder<NationCodeState>(

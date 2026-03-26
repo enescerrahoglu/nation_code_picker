@@ -52,6 +52,8 @@ extension NationCodeDialogExtension on NationCodePicker {
     String? title,
     void Function(NationCodes)? onNationSelected,
     bool hideSearch = false,
+    TextStyle? searchBarTextStyle,
+    TextStyle? searchBarPlaceholderStyle,
   }) {
     showDialog(
       context: context,
@@ -62,6 +64,8 @@ extension NationCodeDialogExtension on NationCodePicker {
         onNationSelected: onNationSelected,
         title: title,
         hideSearch: hideSearch,
+        searchBarPlaceholderStyle: searchBarPlaceholderStyle,
+        searchBarTextStyle: searchBarTextStyle,
       ),
     );
   }

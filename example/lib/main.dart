@@ -49,6 +49,16 @@ class _MyHomePageState extends State<MyHomePage> {
               defaultNationCode: _selectedNationCode,
               locale: const Locale('tr'),
               primaryNationCode: NationCodes.tr,
+              searchBarPlaceholderStyle: TextStyle(
+                color: Colors.deepPurple.shade100,
+                fontWeight: FontWeight.bold,
+                fontFamily: 'Ubuntu',
+              ),
+              searchBarTextStyle: const TextStyle(
+                color: Colors.deepPurple,
+                fontWeight: FontWeight.bold,
+                fontFamily: 'Ubuntu',
+              ),
               dialCodeTextStyle: const TextStyle(
                 color: Colors.deepPurple,
                 fontWeight: FontWeight.bold,

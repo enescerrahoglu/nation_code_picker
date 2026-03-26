@@ -4,17 +4,31 @@ mixin _NationCodePickerDialogViewMixin on State<NationCodePickerDialogView> {
   void _searchCountries(String query) {
     query = query.trim().toLowerCase();
     final results = NationCodes.values.where((nation) {
-      final name = NationCodeLocalization.instance.translate(nation.code)?.toLowerCase() ?? nation.name.toLowerCase();
+      final name = NationCodeLocalization.instance
+              .translate(nation.code)
+              ?.toLowerCase() ??
+          nation.name.toLowerCase();
       final code = nation.code.toLowerCase();
       final dialCode = nation.dialCode.toLowerCase();
-      return name.contains(query) || code.contains(query) || dialCode.contains(query);
+      return name.contains(query) ||
+          code.contains(query) ||
+          dialCode.contains(query);
     }).toList();
 
-    widget.stateNotifier.value = widget.stateNotifier.value.copyWith(searchedNationCodes: results);
+    if (widget.primaryNationCode != null &&
+        results.contains(widget.primaryNationCode)) {
+      results.remove(widget.primaryNationCode);
+      results.insert(0, widget.primaryNationCode!);
+    }
+
+    widget.stateNotifier.value =
+        widget.stateNotifier.value.copyWith(searchedNationCodes: results);
   }
 
   Widget _buildSearchBar(
-      {EdgeInsetsGeometry? padding, TextStyle? searchBarTextStyle, TextStyle? searchBarPlaceholderStyle}) {
+      {EdgeInsetsGeometry? padding,
+      TextStyle? searchBarTextStyle,
+      TextStyle? searchBarPlaceholderStyle}) {
     return widget.hideSearch
         ? const SizedBox.shrink()
         : Padding(
@@ -34,6 +48,7 @@ extension NationCodeDialogExtension on NationCodePicker {
     BuildContext context, {
     required ValueNotifier<NationCodeState> stateNotifier,
     required NationCodes defaultNationCode,
+    NationCodes? primaryNationCode,
     String? title,
     void Function(NationCodes)? onNationSelected,
     bool hideSearch = false,
@@ -43,6 +58,7 @@ extension NationCodeDialogExtension on NationCodePicker {
       builder: (context) => NationCodePickerDialogView(
         stateNotifier: stateNotifier,
         defaultNationCode: defaultNationCode,
+        primaryNationCode: primaryNationCode,
         onNationSelected: onNationSelected,
         title: title,
         hideSearch: hideSearch,

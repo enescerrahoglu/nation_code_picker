@@ -9,6 +9,7 @@ part 'nation_code_picker_dialog_view_mixin.dart';
 class NationCodePickerDialogView extends StatefulWidget {
   final ValueNotifier<NationCodeState> stateNotifier;
   final NationCodes defaultNationCode;
+  final NationCodes? primaryNationCode;
   final String? title;
   final void Function(NationCodes)? onNationSelected;
   final bool hideSearch;
@@ -19,6 +20,7 @@ class NationCodePickerDialogView extends StatefulWidget {
     super.key,
     required this.stateNotifier,
     required this.defaultNationCode,
+    this.primaryNationCode,
     this.title,
     this.onNationSelected,
     this.hideSearch = false,
@@ -27,10 +29,12 @@ class NationCodePickerDialogView extends StatefulWidget {
   });
 
   @override
-  State<NationCodePickerDialogView> createState() => _NationCodePickerDialogViewState();
+  State<NationCodePickerDialogView> createState() =>
+      _NationCodePickerDialogViewState();
 }
 
-class _NationCodePickerDialogViewState extends State<NationCodePickerDialogView> with _NationCodePickerDialogViewMixin {
+class _NationCodePickerDialogViewState extends State<NationCodePickerDialogView>
+    with _NationCodePickerDialogViewMixin {
   @override
   Widget build(BuildContext context) {
     return Dialog(
@@ -72,7 +76,9 @@ class _NationCodePickerDialogViewState extends State<NationCodePickerDialogView>
                   valueListenable: widget.stateNotifier,
                   builder: (context, state, _) {
                     return state.searchedNationCodes.isEmpty
-                        ? const Center(child: Icon(CupertinoIcons.flag_slash_fill, size: 30))
+                        ? const Center(
+                            child:
+                                Icon(CupertinoIcons.flag_slash_fill, size: 30))
                         : CupertinoScrollbar(
                             child: Material(
                               color: Colors.transparent,
@@ -80,14 +86,18 @@ class _NationCodePickerDialogViewState extends State<NationCodePickerDialogView>
                                 padding: const EdgeInsets.all(10),
                                 itemCount: state.searchedNationCodes.length,
                                 itemBuilder: (context, index) {
-                                  final nation = state.searchedNationCodes[index];
+                                  final nation =
+                                      state.searchedNationCodes[index];
                                   return ListTile(
                                     splashColor: Colors.transparent,
-                                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(10)),
                                     onTap: () {
                                       final selected = nation;
                                       widget.stateNotifier.value =
-                                          widget.stateNotifier.value.copyWith(selectedNationCode: selected);
+                                          widget.stateNotifier.value.copyWith(
+                                              selectedNationCode: selected);
 
                                       if (widget.onNationSelected != null) {
                                         widget.onNationSelected!(selected);
@@ -97,16 +107,25 @@ class _NationCodePickerDialogViewState extends State<NationCodePickerDialogView>
                                         Navigator.pop(context);
                                       }
                                     },
-                                    leading: FlagComponent(nation: nation, scale: 12),
-                                    title: Text(NationCodeLocalization.instance.translate(nation.code) ?? nation.name),
+                                    leading: FlagComponent(
+                                        nation: nation, scale: 12),
+                                    title: Text(NationCodeLocalization.instance
+                                            .translate(nation.code) ??
+                                        nation.name),
                                     trailing: Text(
                                       nation.dialCode,
-                                      style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+                                      style: const TextStyle(
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.bold),
                                     ),
                                   );
                                 },
                                 separatorBuilder: (context, index) =>
-                                    const Divider(thickness: 0.5, height: 0, indent: 12, endIndent: 12),
+                                    const Divider(
+                                        thickness: 0.5,
+                                        height: 0,
+                                        indent: 12,
+                                        endIndent: 12),
                               ),
                             ),
                           );

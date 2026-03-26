@@ -1,6 +1,5 @@
 library nation_code_picker;
 
-import 'package:flutter/material.dart';
 import 'package:nation_code_picker/flag_component.dart';
 import 'package:nation_code_picker/src/localization/nation_code_localization.dart';
 import 'package:nation_code_picker/src/nation_codes.dart';
@@ -23,21 +22,12 @@ final class NationCodePicker extends StatefulWidget {
   /// The default [NationCodes] to be selected when the picker is first shown.
   final NationCodes defaultNationCode;
 
+  /// The [NationCodes] that will be displayed at the top of the picker list.
+  final NationCodes? primaryNationCode;
+
   /// Callback function that is called when a nation code is selected.
   /// If null, no action is taken when a nation is selected.
   final void Function(NationCodes)? onNationSelected;
-
-  /// The color of the text displaying the nation's dial code.
-  /// Defaults to [CupertinoColors.label].
-  final Color? dialCodeColor;
-
-  /// The font family for the text displaying the nation's dial code.
-  /// Defaults to the system font.
-  final String? dialCodeFontFamily;
-
-  /// The font weight for the text displaying the nation's dial code.
-  /// Defaults to [FontWeight.normal].
-  final FontWeight? dialCodeFontWeight;
 
   /// Whether the textfield that provides the search feature is hidden or not.
   /// Defaults to `false`, meaning the search bar is shown.
@@ -60,9 +50,8 @@ final class NationCodePicker extends StatefulWidget {
   final Locale? locale;
 
   /// The text style for the dial code.
-  /// If provided, overrides [dialCodeColor], [dialCodeFontFamily], and [dialCodeFontWeight].
-  /// If not provided, the individual properties are used to style the dial text.
-  /// If neither is provided, defaults to the system style.
+  /// If provided, used to style the dial text.
+  /// Defaults to the system style if not provided.
   final TextStyle? dialCodeTextStyle;
 
   /// The scale of the flag image.
@@ -106,10 +95,8 @@ final class NationCodePicker extends StatefulWidget {
   NationCodePicker({
     super.key,
     required this.defaultNationCode,
+    this.primaryNationCode,
     this.onNationSelected,
-    this.dialCodeColor,
-    this.dialCodeFontFamily,
-    this.dialCodeFontWeight,
     this.hideSearch = false,
     this.hideFlag = false,
     this.hideDialCode = false,
@@ -127,6 +114,16 @@ final class NationCodePicker extends StatefulWidget {
 
 class _NationCodePickerState extends State<NationCodePicker>
     with _NationCodePickerMixin {
+  List<NationCodes> _getInitialNationCodes() {
+    final list = List<NationCodes>.from(NationCodes.values);
+    if (widget.primaryNationCode != null &&
+        list.contains(widget.primaryNationCode)) {
+      list.remove(widget.primaryNationCode);
+      list.insert(0, widget.primaryNationCode!);
+    }
+    return list;
+  }
+
   @override
   Widget build(BuildContext context) {
     return CupertinoButton(
@@ -134,11 +131,12 @@ class _NationCodePickerState extends State<NationCodePicker>
       minimumSize: Size.zero,
       onPressed: () {
         _stateNotifier.value = _stateNotifier.value
-            .copyWith(searchedNationCodes: List.from(NationCodes.values));
+            .copyWith(searchedNationCodes: _getInitialNationCodes());
         NationCodeDialogExtension.showNationCodesDialog(
           context,
           stateNotifier: _stateNotifier,
           defaultNationCode: widget.defaultNationCode,
+          primaryNationCode: widget.primaryNationCode,
           onNationSelected: widget.onNationSelected,
           title: widget.title,
           hideSearch: widget.hideSearch,
@@ -163,16 +161,7 @@ class _NationCodePickerState extends State<NationCodePicker>
                     if (!widget.hideDialCode)
                       Text(
                         nation.dialCode,
-                        style: widget.dialCodeTextStyle ??
-                            TextStyle(
-                              color: widget.dialCodeColor,
-                              fontWeight: widget.dialCodeFontWeight,
-                              fontFamily: widget.dialCodeFontFamily ??
-                                  Theme.of(context)
-                                      .textTheme
-                                      .titleMedium
-                                      ?.fontFamily,
-                            ),
+                        style: widget.dialCodeTextStyle,
                       ),
                   ],
                 );

@@ -47,9 +47,13 @@ class _MyHomePageState extends State<MyHomePage> {
             NationCodePicker(
               flagScale: 0.6,
               defaultNationCode: _selectedNationCode,
-              dialCodeColor: Colors.deepPurple,
-              dialCodeFontWeight: FontWeight.bold,
-              dialCodeFontFamily: 'Ubuntu',
+              locale: const Locale('tr'),
+              primaryNationCode: NationCodes.tr,
+              dialCodeTextStyle: const TextStyle(
+                color: Colors.deepPurple,
+                fontWeight: FontWeight.bold,
+                fontFamily: 'Ubuntu',
+              ),
               onNationSelected: (p0) {
                 setState(() {
                   _selectedNationCode = p0;

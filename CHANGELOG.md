@@ -1,3 +1,7 @@
+## 1.2.5
+- Added `primaryNationCode` parameter to place a specific nation code at the top of the list
+- Ensured `primaryNationCode` stays at the top of search results when finding nations
+
 ## 1.2.4
 - Added `dialCodeTextStyle` parameter for comprehensive text styling of dial codes
 - Added `flagScale` parameter for customizable flag sizing (0.1-1.0 range)
